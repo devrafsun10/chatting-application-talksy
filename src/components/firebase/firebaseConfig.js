@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 const firebaseConfig = {
   apiKey: "AIzaSyDcGG7M1mWwp_WYv09ljOIC2OI9ESvyAck",
   authDomain: "talksy-8c315.firebaseapp.com",
+  databaseURL: "https://talksy-8c315-default-rtdb.firebaseio.com",
   projectId: "talksy-8c315",
   storageBucket: "talksy-8c315.firebasestorage.app",
   messagingSenderId: "267519120017",

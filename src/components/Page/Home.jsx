@@ -3,6 +3,13 @@ import Talksy from '../../../public/talksy.png'
 import { useSelector } from 'react-redux'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router';
+import Sidebar from '../Sidebar/Sidebar';
+import Grouplist from '../GroupList/Grouplist';
+import Friends from '../Friends/Friends';
+import UserList from '../UserList/UserList';
+import FriendRequest from '../FriendRequest/FriendRequest';
+import MyGroups from '../MyGroups/MyGroups';
+import BlockedUser from '../BlockedUser/BlockedUser';
 
 
 const Home = () => {
@@ -40,9 +47,26 @@ const Home = () => {
     {
       verify ? 
 
-      <div className='bg-gray-100 h-screen'>
-      <img className="mx-auto" src={Talksy} alt="#talksyLogo" />
-    </div> 
+    //   <div className='bg-gray-100 h-screen'>
+    //   <img className="mx-auto" src={Talksy} alt="#talksyLogo" />
+    // </div> 
+    <div>
+      <div className='flex '>
+        <Sidebar/>
+        <div className=' w-[430px] z-[99]'>
+          <Grouplist/>
+          <FriendRequest/>
+        </div>
+        <div className=' mx-[22px] w-[320px]'>
+          < Friends/>
+          < MyGroups/>
+        </div>
+        <div className=' ml-[20px] '>
+          <UserList/>
+          <BlockedUser/>
+        </div>
+      </div>
+    </div>
     : 
      <div className='bg-[#1E1E1E] h-screen w-full flex justify-center items-center'>
      <div>

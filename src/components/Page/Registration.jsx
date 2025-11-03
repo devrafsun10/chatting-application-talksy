@@ -6,10 +6,13 @@ import { FaEyeSlash } from "react-icons/fa";
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { Bars } from 'react-loader-spinner'
+import { getDatabase, ref, set } from "firebase/database";
 
 
 
 const Registration = () => {
+
+  const db = getDatabase();
 
   const [loading, setLoading] = useState(false)
   const [email, setEmail] = useState("")
@@ -90,6 +93,12 @@ const Registration = () => {
           setTimeout(()=>{
              navigate("/login")
           },3000)
+
+          set(ref(db, 'users/' + user.user.uid ), {
+    username: fullName ,
+    email: email,
+    
+  });
          
           
            // Signed up 
