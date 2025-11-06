@@ -9,7 +9,7 @@ const MyGroups = () => {
   return (
     <div className='shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] p-[21px] w-[344px] rounded-[20px] my-[33px]  '>
                      <div className='flex items-center justify-between'>
-                        <h1 className=' font-tertiary font-semibold text-[20px]'>User List</h1>
+                        <h1 className=' font-tertiary font-semibold text-[20px]'>My Groups</h1>
                         <BsThreeDotsVertical className='cursor-pointer' />
                     </div>
             
