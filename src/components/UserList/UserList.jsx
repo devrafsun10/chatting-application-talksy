@@ -5,21 +5,43 @@ import frnd1 from '../../assets/friend1.png'
 // import frnd3 from '../../assets/friend3.png'
 // import frnd4 from '../../assets/friend4.png'
 import { MdAddBox } from "react-icons/md";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
+import { useSelector } from 'react-redux';
 const UserList = () => {
+
+  const data = useSelector((selector) => (selector.userInfo.value.user))
+  console.log(data.uid, "UID");
+  
+
   const db = getDatabase();
   const [userList , setUserList] = useState([])
+
   useEffect(() =>{
     const useRef = ref(db, "users")
     onValue(useRef, (snapshot)=>{
      let arr = []
      snapshot.forEach((item)=>{
-      arr.push(item.val())
+      if(data.uid !== item.key ){
+        
+        arr.push(item.val())
+      }
+      
      })
      setUserList(arr);
     })
   },[])
   console.log(userList);
+
+  const handlefrndRequest = (item) =>{
+    console.log(item);
+
+     set(ref(db, 'frienRequest/'), {
+      senderName: data.displayName,
+      reciverName: item.username
+        
+      });
+    
+  }
   
   return (
      <div className='shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] p-[21px] w-[344px] rounded-[20px] my-[33px]  '>
@@ -45,7 +67,7 @@ const UserList = () => {
                     </div>
                         
                        <div className='text-[30px] cursor-pointer'>
-                         <MdAddBox/>
+                         < MdAddBox onClick={() => handlefrndRequest(user)} />
                        </div>
                         
                 </div>

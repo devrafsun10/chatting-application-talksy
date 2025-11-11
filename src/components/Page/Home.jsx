@@ -61,7 +61,7 @@ const Home = () => {
           < Friends/>
           < MyGroups/>
         </div>
-        <div className=' ml-[20px] '>
+        <div className='ml-[20px] '>
           <UserList/>
           <BlockedUser/>
         </div>

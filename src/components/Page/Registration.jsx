@@ -3,7 +3,7 @@ import registration from '../../assets/registration.png'
 import { Link, useNavigate } from 'react-router'
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { Bars } from 'react-loader-spinner'
 import { getDatabase, ref, set } from "firebase/database";
@@ -89,6 +89,10 @@ const Registration = () => {
           sendEmailVerification(auth.currentUser)
           toast.success("Registration Successful !")
           console.log(user,"user");
+
+          updateProfile(auth.currentUser, {
+            displayName: fullName,
+          })
 
           setTimeout(()=>{
              navigate("/login")
