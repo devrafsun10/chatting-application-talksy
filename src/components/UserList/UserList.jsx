@@ -4,13 +4,13 @@ import frnd1 from '../../assets/friend1.png'
 // import frnd2 from '../../assets/friend2.png'
 // import frnd3 from '../../assets/friend3.png'
 // import frnd4 from '../../assets/friend4.png'
-import { MdAddBox } from "react-icons/md";
-import { getDatabase, ref, onValue, set } from "firebase/database";
+import { MdAddBox, MdPersonRemove } from "react-icons/md";
+import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { useSelector } from 'react-redux';
 const UserList = () => {
 
-  const data = useSelector((selector) => (selector.userInfo.value.user))
-  console.log(data.uid, "UID");
+  const data = useSelector((selector) => (selector?.userInfo?.value?.user))
+  console.log(data?.uid, "UID");
   
 
   const db = getDatabase();
@@ -21,9 +21,9 @@ const UserList = () => {
     onValue(useRef, (snapshot)=>{
      let arr = []
      snapshot.forEach((item)=>{
-      if(data.uid !== item.key ){
+      if(data?.uid !== item.key ){
         
-        arr.push(item.val())
+        arr.push({...item?.val(), userId: item.key})
       }
       
      })
@@ -35,13 +35,37 @@ const UserList = () => {
   const handlefrndRequest = (item) =>{
     console.log(item);
 
-     set(ref(db, 'frienRequest/'), {
+    set(push(ref(db, 'frienRequest/')),{
+
       senderName: data.displayName,
-      reciverName: item.username
-        
-      });
+      senderId: data.uid,
+      reciverName: item.username,
+      reciverId: item.userId
+
+    });
     
   }
+
+   const [friendRequest, setfriendRequest] = useState([]);
+  
+    useEffect(() => {
+      const friendRequestRef = ref(db, "frienRequest");
+      onValue(friendRequestRef, (snapshot) => {
+        let arr = [];
+        snapshot.forEach((item) => {
+         arr.push(item.val().reciverId+item.val().senderId);
+         
+         
+         
+          
+        });
+       setfriendRequest(arr);
+      });
+    }, []);
+    console.log(friendRequest);
+    console.log(userList);
+    
+    
   
   return (
      <div className='shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] p-[21px] w-[344px] rounded-[20px] my-[33px]  '>
@@ -66,9 +90,20 @@ const UserList = () => {
                     </div>
                     </div>
                         
+                        {
+                          friendRequest.includes(data.uid+user.userId)||
+                          friendRequest.includes(user.userId+data.uid )
+                          ?
+                          <div className='text-[30px] cursor-pointer'>
+                            <MdPersonRemove />
+                       </div>
+                       :
                        <div className='text-[30px] cursor-pointer'>
                          < MdAddBox onClick={() => handlefrndRequest(user)} />
                        </div>
+
+                        }
+
                         
                 </div>
                     )

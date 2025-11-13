@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 
 const Sidebar = () => {
   
-  const data = useSelector((selector) => (selector.userInfo.value.user))
+  const data = useSelector((selector) => (selector?.userInfo?.value))
    const auth = getAuth();
   const handleLogout = () => {
   signOut(auth).then(() => {
@@ -27,7 +27,7 @@ const Sidebar = () => {
             <img src={profile} alt="" />
         </div>
         <div className='flex justify-center pt-2 text-xl font-bold text-white'>
-          <p> {data?.displayName} </p>
+          <p> {data?.displayName || data?.user?.displayName} </p>
         </div>
         <div className=" relative after:absolute after:content-[''] after:top-0 after:left-0 after:w-[167px] after:h-full after:bg-white after:z-[-1] z-1 after:ml-[20px] after:rounded-lg 
         before:absolute before:contemt-[''] before:top-0 before:right-[0px] before:h-full before:w-[10px] before:bg-[#1E1E1E] before:rounded-tl-lg before:rounded-bl-lg before:shadow-2xs/90 before:shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)] mt-[78px] py-[20px] flex justify-center cursor-pointer   ">
