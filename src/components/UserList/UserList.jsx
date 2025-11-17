@@ -38,7 +38,7 @@ const UserList = () => {
     set(push(ref(db, 'frienRequest/')),{
 
       senderName: data.displayName,
-      senderId: data.uid,
+      senderId: data?.uid,
       reciverName: item.username,
       reciverId: item.userId
 
@@ -91,8 +91,8 @@ const UserList = () => {
                     </div>
                         
                         {
-                          friendRequest.includes(data.uid+user.userId)||
-                          friendRequest.includes(user.userId+data.uid )
+                          friendRequest.includes(data?.uid+user.userId)||
+                          friendRequest.includes(user?.userId+data?.uid )
                           ?
                           <div className='text-[30px] cursor-pointer'>
                             <MdPersonRemove />
