@@ -4,7 +4,7 @@ import frnd1 from "../../assets/friend1.png";
 // import frnd2 from "../../assets/friend2.png";
 // import frnd3 from "../../assets/friend3.png";
 // import frnd4 from "../../assets/friend4.png";
-import { getDatabase, onValue, ref, set } from "firebase/database";
+import { getDatabase, onValue, push, ref, remove, set } from "firebase/database";
 import { useSelector } from "react-redux";
 
 const FriendRequest = () => {
@@ -20,7 +20,7 @@ const FriendRequest = () => {
       snapshot.forEach((item) => {
         if(data.uid == item.val().reciverId){
           
-          arr.push(item.val());
+          arr.push({...item.val(),key: item.key });
         }
         
       });
@@ -31,12 +31,16 @@ const FriendRequest = () => {
 
   const handleFrnd = (item)=>{
     console.log(item);
-    set(ref(db, "friend"),{
+    set(push(ref(db, "friend")),{
       reciverName: item.reciverName,
       reciverId: item.reciverId,
       senderName: item.senderName,
       senderId: item.senderId
+    }).then(()=>{
+      
+      remove(ref(db, "frienRequest/" + item.key));
     })
+
     
   }
   
@@ -52,7 +56,7 @@ const FriendRequest = () => {
       <div className="overflow-y-scroll h-[347px]">
         {
           friendRequest.map((item) => 
-             <div className="relative flex justify-between items-center mt-[17px] border-b-2 border-black/25">
+             <div key={item.key} className="relative flex justify-between items-center mt-[17px] border-b-2 border-black/25">
           <div className="flex">
             <div className="mb-2 mr-[10px]">
               <img src={frnd1} alt="#hjh" />
