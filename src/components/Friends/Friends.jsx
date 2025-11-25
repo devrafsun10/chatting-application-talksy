@@ -26,7 +26,7 @@ const Friends = () => {
           });
          setFriendList(arr);
         });
-      }, []);
+      },[]);
       console.log(friendList);
 
       const handleBlock = (item) => {
