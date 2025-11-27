@@ -52,7 +52,7 @@ const Home = () => {
     // </div> 
     <div>
       <div className='flex '>
-        <Sidebar/>
+        <Sidebar active="home"/>
         <div className=' w-[430px] z-[99]'>
           <Grouplist/>
           <FriendRequest/>

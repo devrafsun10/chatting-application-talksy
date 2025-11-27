@@ -8,6 +8,7 @@ import ForgotPassword from "./components/page/ForgotPassword";
 import Home from "./components/page/Home";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Grouplist from "./components/GroupList/Grouplist";
+import Message from "./components/Message/Message";
 
 function App() {
  
@@ -27,6 +28,10 @@ function App() {
   {
     path: "/forgotpassword",
     element: <ForgotPassword/>,
+  },
+  {
+    path: "/msg",
+    element: <Message/>,
   },
 ]);
 

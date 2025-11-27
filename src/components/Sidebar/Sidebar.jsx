@@ -6,8 +6,9 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { ImExit } from "react-icons/im";
 import { getAuth, signOut } from 'firebase/auth';
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router';
 
-const Sidebar = () => {
+const Sidebar = ({active}) => {
   
   const data = useSelector((selector) => (selector?.userInfo?.value))
    const auth = getAuth();
@@ -29,12 +30,17 @@ const Sidebar = () => {
         <div className='flex justify-center pt-2 text-xl font-bold text-white'>
           <p> {data?.displayName || data?.user?.displayName} </p>
         </div>
-        <div className=" relative after:absolute after:content-[''] after:top-0 after:left-0 after:w-[167px] after:h-full after:bg-white after:z-[-1] z-1 after:ml-[20px] after:rounded-lg 
-        before:absolute before:contemt-[''] before:top-0 before:right-[0px] before:h-full before:w-[10px] before:bg-[#1E1E1E] before:rounded-tl-lg before:rounded-bl-lg before:shadow-2xs/90 before:shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)] mt-[78px] py-[20px] flex justify-center cursor-pointer   ">
-            <GoHome className='text-5xl font-primary' />
+        <div className= {`relative after:absolute after:content-[''] after:top-0 after:left-0 after:w-[167px] after:h-full ${active=="home"? "after:bg-white":"after:bg-transparent"}  after:z-[-1] z-1 after:ml-[20px] after:rounded-lg 
+        before:absolute before:contemt-[''] before:top-0 before:right-[0px] before:h-full before:w-[10px] before:bg-[#1E1E1E] before:rounded-tl-lg before:rounded-bl-lg before:shadow-2xs/90 before:shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)] mt-[78px] py-[20px] flex justify-center cursor-pointer`}>
+            <Link to='/'>
+            <GoHome className={`text-5xl ${active=="home"? "font-primary":"text-white"} `} />
+            </Link>
         </div>
-        <div className=" mt-[78px] py-[20px] flex justify-center cursor-pointer   ">
-            <AiTwotoneMessage className='text-5xl font-primary ' />
+        <div className={`relative after:absolute after:content-[''] after:top-0 after:left-0 after:w-[167px] after:h-full ${active=="message"? "after:bg-white":"after:bg-transparent"}  after:z-[-1] z-1 after:ml-[20px] after:rounded-lg 
+        before:absolute before:contemt-[''] before:top-0 before:right-[0px] before:h-full before:w-[10px] before:bg-[#1E1E1E] before:rounded-tl-lg before:rounded-bl-lg before:shadow-2xs/90 before:shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)] mt-[78px] py-[20px] flex justify-center cursor-pointer`}>
+          <Link to='/msg'>
+            <AiTwotoneMessage className={`text-5xl ${active=="message"? "font-primary":""} `} />
+          </Link>
         </div>
         <div className=" mt-[78px] py-[20px] flex justify-center cursor-pointer   ">
             <IoSettingsOutline  className='text-5xl font-primary text-[#FFFFFF]' />

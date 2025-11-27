@@ -41,6 +41,7 @@ const Grouplist = () => {
 
         setGroupName("");
         setGrouptagline("");
+        setShow(false);
     }
     
   };
@@ -88,7 +89,7 @@ const Grouplist = () => {
 
       <div className="overflow-y-scroll h-[347px]">
         {show ? (
-          <div className=" pt-10 absolute  left-[25%] top-[15%] bg-yellow-50 h-[300px] w-[400px] rounded-md shadow-lg">
+          <div className=" pt-10 absolute  left-[14%] top-[15%] bg-yellow-50 h-[300px] w-[400px] rounded-md shadow-lg">
             <div className="p-3">
               <input
                 value={groupName}
