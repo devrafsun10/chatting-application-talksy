@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
-import Friends from '../Friends/Friends'
 import Chatbox from '../ChatBox/Chatbox'
+import Friendmsg from '../Friendmsg/Friendmsg'
 
 const Message = () => {
   return (
@@ -9,9 +9,9 @@ const Message = () => {
       <div className='flex '>
         <Sidebar active="message"/>
         <div className=' w-[430px] z-[99]'>
-          <Friends/>
+          <Friendmsg/>
         </div>
-        <div className='  w-[689px]'>
+        <div className=' w-[689px]'>
          <Chatbox/>
         </div>
       </div>

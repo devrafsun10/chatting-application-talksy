@@ -88,15 +88,83 @@ const UserList = () => {
   }, []);
   console.log(blockList);
 
+  const [filterUserlist, setFilterUserlist] = useState([]);
+  const handleSearch = (e)=>{
+    let arr = [];
+    if(e.target.value ==0){
+      setFilterUserlist([]);
+    }else{
+      
+      userList.filter((item)=>{
+        if(item.username.toLowerCase().includes(e.target.value.toLowerCase())){
+          arr.push(item);
+          setFilterUserlist(arr);
+        }       
+      })
+    }   
+  }
+  console.log(filterUserlist);
+  
+
   return (
     <div className="shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] p-[21px] w-[344px] rounded-[20px] my-[33px]  ">
       <div className="flex items-center justify-between">
         <h1 className=" font-tertiary font-semibold text-[20px]">User List</h1>
         <BsThreeDotsVertical className="cursor-pointer" />
       </div>
+      <div>
+        <input onChange={handleSearch} type="text" placeholder="Search" className=" w-full outline-none rounded-[20px] p-2 text-[#3D3D3D] font-medium font-tertiary bg-[#FFFFFF] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"/>
+      </div>
 
       <div className="overflow-y-scroll h-[347px]">
-        {userList.map((user) => (
+        {
+          filterUserlist.length > 0 ?
+
+           filterUserlist.map((user) => (
+          <div className="relative flex justify-between items-center mt-[17px] border-b-2 border-black/25">
+            <div className="flex">
+              <div className="mb-2 mr-[10px]">
+                <img src={frnd1} alt="#hjh" />
+              </div>
+
+              <div className="ml-[14px]">
+                <p className=" font-tertiary font-semibold text-[18px]">
+                  {user.username}
+                </p>
+                <p className="font-tertiary font-medium text-[14px] text-[#4D4D4D]/75">
+                  {user.email}
+                </p>
+              </div>
+            </div>
+
+            {
+              blockList.includes(data?.uid + user.userId) ||
+              blockList.includes(user?.userId + data?.uid) ?
+                 <div className="text-[20px] text-red-500 cursor-pointer">
+                <MdBlock />
+              </div>
+              
+              :
+            friendList.includes(data?.uid + user.userId) ||
+            friendList.includes(user?.userId + data?.uid) ? (
+              <div className="text-[20px] text-green-500 cursor-pointer">
+                <FaUserFriends />
+              </div>
+            ) : friendRequest.includes(data?.uid + user.userId) ||
+              friendRequest.includes(user?.userId + data?.uid) ? (
+              <div className="text-[30px] cursor-pointer">
+                <MdPersonRemove />
+              </div>
+            ) : (
+              <div className="text-[30px] cursor-pointer">
+                <MdAddBox onClick={() => handlefrndRequest(user)} />
+              </div>
+            )}
+          </div>
+        ))
+          :
+        
+        userList.map((user) => (
           <div className="relative flex justify-between items-center mt-[17px] border-b-2 border-black/25">
             <div className="flex">
               <div className="mb-2 mr-[10px]">
