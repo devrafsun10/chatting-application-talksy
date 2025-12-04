@@ -74,7 +74,7 @@ const Friendmsg = () => {
                 </div>
                     <button
                     onClick={()=>handleMsg(item)}
-                     className=' font-tertiary font-semibold text-[20px] text-white bg-[#1E1E1E] px-[22px] rounded-[5px] cursor-pointer ml-[51px]'>Message</button>
+                     className=' font-tertiary font-semibold text-[16px] text-white bg-[#1E1E1E] px-[15px] rounded-[5px] cursor-pointer ml-[51px]'>Message</button>
             </div>
                     ))
                 }

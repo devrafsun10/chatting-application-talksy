@@ -32,11 +32,11 @@ const Friends = () => {
       const handleBlock = (item) => {
         console.log(item);
         set(push(ref(db, "block")),{
-            ...item           
-             //   blockBy: item.reciverName,
-            //   blockById: item.reciverId,
-            //   blockIdName: item.senderName,
-            //   blockId: item.senderId
+            // ...item           
+              blockById:data.uid,
+              blockByName: data.uid === item.reciverId ? item.reciverName : item.senderName,
+              blockedId: data.uid === item.reciverId ? item.senderId : item.reciverId,
+              blockedName:data.uid === item.reciverId ? item.senderName : item.reciverName
             }).then(()=>{
                 
                 remove(ref(db, "friend/" + item.key));

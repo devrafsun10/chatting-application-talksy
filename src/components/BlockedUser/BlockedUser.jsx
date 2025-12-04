@@ -19,7 +19,7 @@ const BlockedUser = () => {
              let arr = [];
              snapshot.forEach((item) => {
               
-              if( data.uid == item.val().reciverId || data.uid == item.val().senderId){
+              if( data.uid == item.val().blockById){
 
                 arr.push({...item.val(),key: item.key});
               }
@@ -53,7 +53,7 @@ const BlockedUser = () => {
                             </div>
                 
                             <div className='ml-[14px]'>
-                                <p className=' font-tertiary font-semibold text-[14px]'> {data.uid == item.reciverId ? item.senderName : item.reciverName}</p>
+                                <p className=' font-tertiary font-semibold text-[14px]'> {item.blockedName}</p>
                                 <p className='font-tertiary font-medium text-[10px] text-[#4D4D4D]/75'>Dinner?</p>
                             </div>
                             </div>
