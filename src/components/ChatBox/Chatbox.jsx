@@ -113,7 +113,7 @@ const Chatbox = () => {
                 </div>
               </div>
               <p className="font-tertiary font-medium text-[12px] text-black/25 mt-[5px]">
-                Today, 2:01pm
+                {moment(item?.date).fromNow()}
               </p>
             </div>
           )

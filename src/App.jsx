@@ -9,6 +9,7 @@ import Home from "./components/page/Home";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Grouplist from "./components/GroupList/Grouplist";
 import Message from "./components/Message/Message";
+import Setting from "./components/page/Setting";
 
 function App() {
  
@@ -32,6 +33,10 @@ function App() {
   {
     path: "/msg",
     element: <Message/>,
+  },
+  {
+    path: "/setting",
+    element: <Setting/>,
   },
 ]);
 
