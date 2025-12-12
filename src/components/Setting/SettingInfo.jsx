@@ -5,6 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDatabase, ref, set, update } from "firebase/database";
 import { userNameUpdate, userStatusUpdate } from "../../slices/userSlice";
 import { getAuth } from "firebase/auth";
+import editname from "../../assets/editname.png";
+import editstatus from "../../assets/editstatus.png";
+import editimg from "../../assets/editimg.png";
+import help from "../../assets/help.png";
 
 const SettingInfo = () => {
   const db = getDatabase();
@@ -64,12 +68,15 @@ const SettingInfo = () => {
         </div>
       </div>
       <div className="py-10">
-        <p
+        <div className="flex items-center gap-x-3">
+          <div><img className="w-[20px]" src={editname} alt="#img" /></div>
+          <p
           onClick={handleEditNameShow}
           className="font-semibold text-lg  mb-2 cursor-pointer hover:text-violet-600 duration-300"
         >
           Edit Profile Name.
         </p>
+        </div>
         {show && (
           <div>
             <input
@@ -87,12 +94,17 @@ const SettingInfo = () => {
             </button>
           </div>
         )}
-        <p
+       <div className="flex items-center gap-x-3">
+        <div>
+          <img className="w-[20px]" src={editstatus} alt="" />
+        </div>
+         <p
           onClick={handleStatusShow}
           className="font-semibold text-lg  mb-2 cursor-pointer hover:text-violet-600 duration-300"
         >
           Edit Profile Status Info.
         </p>
+       </div>
         {showStatus && (
           <div>
             <input
@@ -112,8 +124,18 @@ const SettingInfo = () => {
           </div>
         )}
 
-        <p className="font-semibold text-lg  mb-2">Edit Profile Photo.</p>
-        <p className="font-semibold text-lg  mb-2">Help.</p>
+        <div className="flex items-center gap-x-3 mb-2">
+          <div>
+            <img className="w-[20px]" src={editimg} alt="#img" />
+          </div>
+          <p className="font-semibold text-lg  ">Edit Profile Photo.</p>
+        </div>
+        <div className="flex items-center gap-x-3 mb-2">
+          <div>
+            <img className="w-[20px]" src={help} alt="#img" />
+          </div>
+          <p className="font-semibold text-lg  ">Help.</p>
+        </div>
       </div>
     </div>
   );
