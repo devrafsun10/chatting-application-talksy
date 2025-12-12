@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import profile from "../../assets/profile.png";
 import { useDispatch, useSelector } from "react-redux";
 // import { getAuth, updateProfile } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, update } from "firebase/database";
 import { userNameUpdate } from "../../slices/userSlice";
 
 const SettingInfo = () => {
@@ -10,6 +10,7 @@ const SettingInfo = () => {
 //   const auth = getAuth();
   const dispatch = useDispatch();
   const data = useSelector((selector) => selector?.userInfo?.value?.user);
+
   const [show, setShow] = useState(false);
   const [showDisplayName, setShowDisplayName] = useState(data?.displayName);
 
@@ -23,9 +24,9 @@ const SettingInfo = () => {
     //   displayName: showDisplayName,
     // });
 
-    set(ref(db, "users/" + data.uid), {
+    update(ref(db, "users/" + data.uid), {
       username: showDisplayName,
-      email: data.email
+      // email: data.email
     }).then(()=> {
         dispatch(userNameUpdate(showDisplayName));
     })
