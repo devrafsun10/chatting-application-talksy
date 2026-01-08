@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import './App.css'
 import Login from './components/page/Login'
-import Registration from './components/Page/Registration'
+import Registration from './components/page/Registration'
 import firebaseConfig from "./components/firebase/firebaseConfig";
 import ForgotPassword from "./components/page/ForgotPassword";
 import Home from "./components/page/Home";
