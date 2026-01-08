@@ -6,8 +6,8 @@ import Registration from './components/page/Registration'
 import firebaseConfig from "./components/firebase/firebaseConfig";
 import ForgotPassword from "./components/page/ForgotPassword";
 import Home from "./components/page/Home";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Grouplist from "./components/GroupList/Grouplist";
+// import Sidebar from "./components/Sidebar/Sidebar";
+// import Grouplist from "./components/GroupList/Grouplist";
 import Message from "./components/Message/Message";
 import Setting from "./components/page/Setting";
 
